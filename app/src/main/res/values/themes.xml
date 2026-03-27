@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AuthFlow" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary_light</item>
+        <item name="colorPrimaryContainer">@color/primary_container_light</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container_light</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary_light</item>
+        <item name="colorSecondaryContainer">@color/secondary_container_light</item>
+        <item name="colorOnSecondaryContainer">@color/on_secondary_container_light</item>
+
+        <!-- Error color. -->
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/on_error</item>
+        <item name="colorErrorContainer">@color/error_container</item>
+        <item name="colorOnErrorContainer">@color/on_error_container</item>
+
+        <!-- Background and Surface -->
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="colorSurface">@color/surface_light</item>
+        <item name="colorOnSurface">@color/on_surface_light</item>
+        <item name="colorSurfaceVariant">@color/surface_variant_light</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant_light</item>
+        <item name="colorOutline">@color/outline_light</item>
+        <item name="colorOutlineVariant">@color/outline_variant_light</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+
+        <!-- Text Colors -->
+        <item name="android:textColorPrimary">@color/on_surface_light</item>
+        <item name="android:textColorSecondary">@color/on_surface_variant_light</item>
+        <item name="android:textColorHint">@color/on_surface_variant_light</item>
+    </style>
+
+    <style name="Theme.AuthFlow" parent="Base.Theme.AuthFlow" />
+
+    <style name="Theme.AuthFlow.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="colorOnSurface">@color/white</item>
+    </style>
+</resources>
