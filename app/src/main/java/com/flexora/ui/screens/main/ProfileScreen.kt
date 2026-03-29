@@ -7,17 +7,23 @@ import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.flexora.ui.viewmodel.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
+    authViewModel: AuthViewModel,
     onLogoutClick: () -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit = {}
 ) {
+    val user by authViewModel.user.collectAsState()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -47,13 +53,13 @@ fun ProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
             
             Text(
-                text = "Flexora User",
+                text = user?.displayName ?: "Flexora User",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold
             )
             
             Text(
-                text = "flexora.user@example.com",
+                text = user?.email ?: "Not logged in",
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.secondary
             )
@@ -65,9 +71,9 @@ fun ProfileScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     ProfileOption("Settings", {})
-                    Divider(modifier = Modifier.padding(vertical = 8.dp))
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                     ProfileOption("Privacy Policy", {})
-                    Divider(modifier = Modifier.padding(vertical = 8.dp))
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                     ProfileOption("Help & Support", {})
                 }
             }

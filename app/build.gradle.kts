@@ -3,15 +3,15 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.google.services)
+    // alias(libs.plugins.google.services) // Commented out to fix missing google-services.json error
 }
 
 android {
-    namespace = "com.flexora"
+    namespace = "com.example.authflow"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.flexora"
+        applicationId = "com.example.authflow"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -41,6 +41,8 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
+        dataBinding = true
     }
     packaging {
         resources {
@@ -59,7 +61,15 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
     
     // Firebase
     implementation(platform(libs.firebase.bom))

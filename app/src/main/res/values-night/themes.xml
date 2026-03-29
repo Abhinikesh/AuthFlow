@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AuthFlow" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Flexora" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimary">@color/primary_dark</item>
         <item name="colorOnPrimary">@color/on_primary_dark</item>
         <item name="colorPrimaryContainer">@color/primary_container_dark</item>
         <item name="colorOnPrimaryContainer">@color/on_primary_container_dark</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary_light</item>
+        <item name="colorSecondary">@color/secondary_dark</item>
         <item name="colorOnSecondary">@color/on_secondary_dark</item>
         <item name="colorSecondaryContainer">@color/secondary_container_dark</item>
         <item name="colorOnSecondaryContainer">@color/on_secondary_container_dark</item>

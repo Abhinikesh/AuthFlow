@@ -13,14 +13,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.flexora.ui.viewmodel.AuthViewModel
 
 @Composable
 fun LoginScreen(
+    authViewModel: AuthViewModel,
     onLoginSuccess: () -> Unit,
     onNavigateToRegister: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val isLoading by authViewModel.isLoading.collectAsState()
+    val error by authViewModel.error.collectAsState()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -34,15 +38,16 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Welcome Back",
-                style = MaterialTheme.typography.headlineLarge,
+                text = "Flexora",
+                style = MaterialTheme.typography.displayMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
             )
             
             Text(
-                text = "Sign in to continue your journey",
-                style = MaterialTheme.typography.bodyMedium
+                text = "Welcome Back",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Medium
             )
             
             Spacer(modifier = Modifier.height(32.dp))
@@ -53,7 +58,8 @@ fun LoginScreen(
                 label = { Text("Email") },
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = { Icon(Icons.Default.Email, contentDescription = null) },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                shape = MaterialTheme.shapes.medium
             )
             
             Spacer(modifier = Modifier.height(16.dp))
@@ -65,17 +71,28 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null) },
                 visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                shape = MaterialTheme.shapes.medium
             )
+            
+            if (error != null) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = error!!, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+            }
             
             Spacer(modifier = Modifier.height(24.dp))
             
             Button(
-                onClick = onLoginSuccess,
+                onClick = { authViewModel.login(email, password, onLoginSuccess) },
                 modifier = Modifier.fillMaxWidth().height(56.dp),
-                shape = MaterialTheme.shapes.medium
+                shape = MaterialTheme.shapes.medium,
+                enabled = !isLoading
             ) {
-                Text("Login")
+                if (isLoading) {
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(24.dp))
+                } else {
+                    Text("Login")
+                }
             }
             
             Spacer(modifier = Modifier.height(16.dp))

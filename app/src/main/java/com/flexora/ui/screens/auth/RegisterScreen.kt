@@ -14,15 +14,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.flexora.ui.viewmodel.AuthViewModel
 
 @Composable
 fun RegisterScreen(
+    authViewModel: AuthViewModel,
     onRegisterSuccess: () -> Unit,
     onNavigateToLogin: () -> Unit
 ) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val isLoading by authViewModel.isLoading.collectAsState()
+    val error by authViewModel.error.collectAsState()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -80,14 +84,24 @@ fun RegisterScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             
+            if (error != null) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = error!!, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+            }
+            
             Spacer(modifier = Modifier.height(24.dp))
             
             Button(
-                onClick = onRegisterSuccess,
+                onClick = { authViewModel.register(email, password, onRegisterSuccess) },
                 modifier = Modifier.fillMaxWidth().height(56.dp),
-                shape = MaterialTheme.shapes.medium
+                shape = MaterialTheme.shapes.medium,
+                enabled = !isLoading
             ) {
-                Text("Register")
+                if (isLoading) {
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(24.dp))
+                } else {
+                    Text("Register")
+                }
             }
             
             Spacer(modifier = Modifier.height(16.dp))

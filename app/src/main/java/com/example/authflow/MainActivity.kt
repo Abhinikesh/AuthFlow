@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Switch from Splash theme to Main theme before calling super.onCreate
-        setTheme(R.style.Theme_AuthFlow)
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
