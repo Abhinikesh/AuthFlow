@@ -42,6 +42,7 @@
     <style name="Theme.AuthFlow.Splash" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/primary</item>
         <item name="android:statusBarColor">@color/primary</item>
-        <item name="colorOnSurface">@color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

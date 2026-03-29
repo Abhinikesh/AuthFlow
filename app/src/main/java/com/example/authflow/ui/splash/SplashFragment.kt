@@ -27,12 +27,12 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Start animation (if any) or just delay and navigate
+        // Set splash duration to 1 second as requested
         Handler(Looper.getMainLooper()).postDelayed({
             if (isAdded) {
                 findNavController().navigate(R.id.action_splashFragment_to_welcomeFragment)
             }
-        }, 3000)
+        }, 1000)
     }
 
     override fun onDestroyView() {
