@@ -5,20 +5,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.flexora.data.local.entity.Workout
 import com.flexora.ui.viewmodel.WorkoutViewModel
-import java.text.SimpleDateFormat
-import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +33,7 @@ fun DashboardScreen(
                 title = { Text("Flexora Dashboard", fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = onHistoryClick) {
-                        Icon(Icons.Default.History, contentDescription = "History")
+                        Icon(Icons.Default.DateRange, contentDescription = "History")
                     }
                     IconButton(onClick = onProfileClick) {
                         Icon(Icons.Default.Person, contentDescription = "Profile")
@@ -71,7 +67,7 @@ fun DashboardScreen(
                     ) {
                         StatItem("Workouts", todayWorkouts.size.toString())
                         StatItem("Total Reps", (totalReps ?: 0).toString())
-                        StatItem("Goal", "20/40") // Example hardcoded goal
+                        StatItem("Goal", "20/40")
                     }
                 }
             }
